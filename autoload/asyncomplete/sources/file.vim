@@ -37,6 +37,10 @@ function! asyncomplete#sources#file#completor(opt, ctx)
     let l:cwd = l:kw
   endif
 
+  if l:cwd =~ '\*\*'
+    return
+  endif
+
   if has('win32') || has('win64')
     let l:glob = fnamemodify(l:cwd, ':t') . '*'
   else
